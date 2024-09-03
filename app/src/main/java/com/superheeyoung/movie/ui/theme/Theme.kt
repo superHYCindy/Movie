@@ -7,8 +7,10 @@ import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.superheeyoung.movie.ui.theme.color.ColorSet
+import com.superheeyoung.movie.ui.theme.color.MyColors
 
 
 private val LocalColors = staticCompositionLocalOf { ColorSet.Red.LightColors }
@@ -18,12 +20,12 @@ private val LocalColors = staticCompositionLocalOf { ColorSet.Red.LightColors }
 fun MovieTheme(
     myColors: ColorSet = ColorSet.Red,
     typography: Typography = Typography,
-    shapes : Shapes = Shapes,
+    shapes: Shapes = Shapes,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
 
-    val colors = if(darkTheme) {
+    val colors = if (darkTheme) {
         myColors.DarkColors
     } else {
         myColors.LightColors
@@ -37,3 +39,9 @@ fun MovieTheme(
         )
     }
 }
+
+//현재 테마에 적용된 색깔을 받게 설정
+val MaterialTheme.colorScheme: MyColors
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalColors.current
