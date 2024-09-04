@@ -1,4 +1,4 @@
-package com.superheeyoung.movie.ui.components.movie.buttons
+package com.superheeyoung.movie.ui.components.buttons
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
@@ -14,30 +14,33 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.superheeyoung.movie.ui.theme.MovieTheme
 import com.superheeyoung.movie.ui.theme.Paddings
 import com.superheeyoung.movie.ui.theme.colorScheme
 
 @Composable
-fun primaryButton(
+fun SecondaryBorderlessButton(
     modifier: Modifier = Modifier,
-    @StringRes id : Int ?= null,
-    text : String = "",
-    onClick : () -> Unit
+    @StringRes id: Int? = null,
+    text: String = "",
+    onClick: () -> Unit
 ) {
     Button(
         modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
-        onClick = { onClick () },
+        onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary,
+            backgroundColor = MaterialTheme.colorScheme.background,
+            contentColor = MaterialTheme.colorScheme.secondary,
             disabledContentColor = MaterialTheme.colorScheme.background,
             disabledBackgroundColor = MaterialTheme.colorScheme.disabledSecondary
-        )
+        ),
+        elevation = null
     ) {
         Row(
-            horizontalArrangement = Arrangement.Center, //오른쪽에서 왼쪽
-            verticalAlignment = Alignment.CenterVertically) { //위에서 아래
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Text(
                 text = id?.let { stringResource(id = id) } ?: text,
                 style = MaterialTheme.typography.button,
@@ -49,10 +52,10 @@ fun primaryButton(
 
 @Preview
 @Composable
-fun PrimaryButtonPreview() {
-    primaryButton(
-        text="SUBMIT"
-    ) {
-
+fun SecondaryBorderlessButtonPreview() {
+    MovieTheme {
+        SecondaryBorderlessButton(
+            text = "CANCEL"
+        ) {}
     }
 }

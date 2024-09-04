@@ -1,51 +1,61 @@
-package com.superheeyoung.movie.ui.components.movie.buttons
+package com.superheeyoung.movie.ui.components.buttons
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.superheeyoung.movie.ui.theme.MovieTheme
+import com.superheeyoung.movie.ui.models.button.LeadingIconData
 import com.superheeyoung.movie.ui.theme.Paddings
 import com.superheeyoung.movie.ui.theme.colorScheme
 
+val LEADING_ICON_SIZE = 24.dp
+
 @Composable
-fun SecondaryButton(
+fun PrimaryButton(
     modifier: Modifier = Modifier,
-    @StringRes id: Int? = null,
-    text: String = "",
-    onClick: () -> Unit
+    @StringRes id : Int ?= null,
+    text : String = "",
+    leadingIconData : LeadingIconData? = null,
+    onClick : () -> Unit
 ) {
     Button(
         modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
-        onClick = onClick,
-        border = BorderStroke(
-            2.dp,
-            MaterialTheme.colorScheme.secondary
-        ),
+        onClick = { onClick () },
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = MaterialTheme.colorScheme.background,
-            contentColor = MaterialTheme.colorScheme.secondary,
+            backgroundColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
             disabledContentColor = MaterialTheme.colorScheme.background,
             disabledBackgroundColor = MaterialTheme.colorScheme.disabledSecondary
         )
     ) {
         Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+            horizontalArrangement = Arrangement.Center, //오른쪽에서 왼쪽
+            verticalAlignment = Alignment.CenterVertically) { //위에서 아래
+            leadingIconData?.let { 
+                Icon(
+                    modifier = Modifier.size(LEADING_ICON_SIZE),
+                    painter = painterResource(id = leadingIconData.iconDrawable),
+                    contentDescription = stringResource(id = leadingIconData.iconContentDescription)
+                )
+                Spacer(modifier = Modifier.width(Paddings.small))
+            }
             Text(
                 text = id?.let { stringResource(id = id) } ?: text,
                 style = MaterialTheme.typography.button,
@@ -57,10 +67,10 @@ fun SecondaryButton(
 
 @Preview
 @Composable
-fun SecondaryButtonPreview() {
-    MovieTheme {
-        SecondaryButton(
-            text = "CANCEL"
-        ) {}
+fun PrimaryButtonPreview() {
+    PrimaryButton(
+        text="SUBMIT"
+    ) {
+
     }
 }

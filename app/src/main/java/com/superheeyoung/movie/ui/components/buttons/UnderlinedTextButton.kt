@@ -1,4 +1,4 @@
-package com.superheeyoung.movie.ui.components.movie.buttons
+package com.superheeyoung.movie.ui.components.buttons
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
