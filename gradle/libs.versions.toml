@@ -11,6 +11,7 @@ composeBom = "2024.04.01"
 coil = "2.7.0"
 material3 = "1.2.1"
 material = "1.0.1"
+nav_version="2.7.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,8 +30,21 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 material = { module = "androidx.compose.material:material", version.ref = "material"}
 coil = { module = "io.coil-kt:coil-compose", version.ref="coil" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref="nav_version"}
+navigation-ui = { module = "androidx.navigation:navigation-ui",version.ref="nav_version" }
+navigation-fragment = { module = "androidx.navigation:navigation-fragment", version.ref="nav_version"}
+navigation-module = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref="nav_version"}
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+[bundles]
+navigation = [
+    "navigation-compose",
+    "navigation-ui",
+    "navigation-fragment",
+    "navigation-module"
+]
 
