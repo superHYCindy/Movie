@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -71,4 +73,9 @@ dependencies {
     implementation(libs.coil)
     //compose navigation
     implementation(libs.bundles.navigation)
+    //hilt
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
+    //retrofit
+    implementation(libs.bundles.retrofit)
 }
