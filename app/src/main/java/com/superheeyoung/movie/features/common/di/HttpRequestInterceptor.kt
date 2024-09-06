@@ -9,7 +9,7 @@ internal class HttpRequestInterceptor : Interceptor {
             chain.request()
                 .newBuilder()
                 .run {
-                    this.addHeader("Authorization: Bearer", "yJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZThmZmY5YzM0ZTE5MjgxYjViMTQ1ODQyNjY1MjE5YSIsIm5iZiI6MTcyNTQ5NzUyMS4zOTkxNTIsInN1YiI6IjY2ZDhmZjNlOGU5MzQxMGQ3ODE4MzUzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7WTvphlsYbhuNHKaOcBFIgPm27rOxpy1rkmt8H6SmdU")
+                    addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZThmZmY5YzM0ZTE5MjgxYjViMTQ1ODQyNjY1MjE5YSIsIm5iZiI6MTcyNTYzMDE2NS45MzI0NjUsInN1YiI6IjY2ZDhmZjNlOGU5MzQxMGQ3ODE4MzUzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.O97_EsdYFK4RTMg9T5C0M7nQOsNjHenGvWrP2BUkEbE")
                 }
                 .build()
         )

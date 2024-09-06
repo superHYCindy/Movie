@@ -8,6 +8,8 @@ interface FeedViewModelOutput {
     val feedUiEffect : SharedFlow<FeedUiEffect>
 }
 
+object FeedState
+
 sealed class FeedUiEffect {
     data class OpenMovieDetail(val movieName : String)
     object OpenInfoDialog : FeedUiEffect()

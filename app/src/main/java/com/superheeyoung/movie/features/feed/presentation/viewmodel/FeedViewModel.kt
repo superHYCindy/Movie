@@ -1,6 +1,9 @@
 package com.superheeyoung.movie.features.feed.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.superheeyoung.movie.features.common.repository.MovieRepository
 import com.superheeyoung.movie.features.feed.presentation.input.FeedViewModelInput
 import com.superheeyoung.movie.features.feed.presentation.output.FeedState
 import com.superheeyoung.movie.features.feed.presentation.output.FeedUiEffect
@@ -10,13 +13,16 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FeedViewModel @Inject constructor() : ViewModel(), FeedViewModelOutput, FeedViewModelInput {
+class FeedViewModel @Inject constructor(
+    private val movieRepository: MovieRepository
+) : ViewModel(), FeedViewModelOutput, FeedViewModelInput {
     //화면에 보여주기 위한 flow
     private val _feedState : MutableStateFlow<FeedState> =
-        MutableStateFlow(FeedState.Loading)
+        MutableStateFlow(FeedState)
     override val feedState : StateFlow<FeedState>
         get() = _feedState
 
@@ -24,7 +30,6 @@ class FeedViewModel @Inject constructor() : ViewModel(), FeedViewModelOutput, Fe
     private val _feedUiEffect = MutableSharedFlow<FeedUiEffect>(replay = 0)
     override val feedUiEffect : SharedFlow<FeedUiEffect>
         get() = _feedUiEffect
-
     override fun openDetail(movieName: String) {
         TODO("Not yet implemented")
     }
@@ -35,5 +40,12 @@ class FeedViewModel @Inject constructor() : ViewModel(), FeedViewModelOutput, Fe
 
     override fun refreshFeed() {
         TODO("Not yet implemented")
+    }
+
+    fun getMovieList() {
+        viewModelScope.launch {
+            val movieList = movieRepository.getMovieList()
+            Log.d("debug111",movieList.toString())
+        }
     }
 }
