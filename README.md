@@ -2,4 +2,6 @@
 2. Design System
 3. Navigation
 4. DI
-5. Flow - StateFlow, SharedFlow
+5. MVI
+6. Coroutine
+7. Flow - StateFlow, SharedFlow
