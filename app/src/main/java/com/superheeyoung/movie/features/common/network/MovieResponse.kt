@@ -10,6 +10,8 @@ data class MovieResponse<T>(
 data class MovieResultResponse(
     @SerializedName("id")
     val id : Int,
+    @SerializedName("genre_ids")
+    val genreList : List<Int>,
     @SerializedName("poster_path")
     val posterPath : String,
     @SerializedName("title")

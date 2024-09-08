@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.superheeyoung.movie.features.common.entity.MovieFeedEntity
+import com.superheeyoung.movie.features.common.entity.MovieResultEntity
 import com.superheeyoung.movie.features.common.network.MovieResponse
 import com.superheeyoung.movie.features.common.network.MovieResultResponse
 import com.superheeyoung.movie.features.feed.presentation.input.FeedViewModelInput
@@ -18,19 +20,25 @@ import com.superheeyoung.movie.ui.theme.Paddings
 
 @Composable
 fun CategoryRow(
-    movie : MovieResultResponse,
-    input : FeedViewModelInput
-
+    movie: List<MovieFeedEntity>,
+    input: FeedViewModelInput
 ) {
     Column {
-        CategoryTitle(movie.title)
-
+        //TODO Title Check
+        //CategoryTitle(movie.title)
         LazyRow(
             contentPadding = PaddingValues(
                 horizontal = Paddings.large
             )
         ) {
-            //itemsIndexed()
+            itemsIndexed(
+                movie
+            ) { index, item ->
+                MovieItem(
+                    movie = item,
+                    input = input
+                )
+            }
         }
     }
 }
@@ -38,20 +46,11 @@ fun CategoryRow(
 @Composable
 fun CategoryTitle(titleName: String) {
     Text(
-        text="Action",
+        text = "Action",
         modifier = Modifier.padding(
             vertical = Paddings.large,
             horizontal = Paddings.extra
         ),
         style = MaterialTheme.typography.h5
     )
-}
-
-@Preview
-@Composable
-fun CategoryRowPreview() {
-    MovieTheme {
-       // CategoryRow()
-    }
-
 }

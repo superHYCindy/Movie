@@ -1,24 +1,14 @@
 package com.superheeyoung.movie.features.feed.presentation.output
 
-import com.superheeyoung.movie.features.common.network.MovieResultResponse
+import com.superheeyoung.movie.features.common.entity.MovieResultEntity
 
-/*
 sealed class FeedState {
     object Loading : FeedState()
     class Main(
-        val movieList: List<MovieFeedItemEntity>
+        val movieList: List<MovieResultEntity>
     ) : FeedState()
 
     class Failed(
-        val reason = String
-    ) : FeedState()
-}*/
-sealed class FeedState {
-    object Loading : FeedState()
-    class Main(
-        val movieList : List<MovieResultResponse>
-    ) : FeedState()
-    class Failed(
-        val reason : String
+        val reason: String
     ) : FeedState()
 }

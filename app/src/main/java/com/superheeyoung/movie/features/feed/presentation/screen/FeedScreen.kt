@@ -52,7 +52,7 @@ fun FeedScreen(
     feedStateHolder: State<FeedState>,
     input: FeedViewModelInput,
     //buttonColor: State<Color>,
-    changeAppColor: () -> Unit
+   // changeAppColor: () -> Unit
 ) {
     //val btnColor by remember { buttonColor }
 
@@ -75,7 +75,7 @@ fun FeedScreen(
                 actions = {
                     AppBarMenu(
                         btnColor = Color.Red,
-                        changeAppColor = changeAppColor,
+                    //    changeAppColor = changeAppColor,
                         input = input
                     )
                 }
@@ -92,7 +92,7 @@ fun FeedScreen(
 @Composable
 fun AppBarMenu(
     btnColor: Color,
-    changeAppColor: () -> Unit,
+   // changeAppColor: () -> Unit,
     input: FeedViewModelInput
 ) {
     Row(
@@ -107,7 +107,7 @@ fun AppBarMenu(
         ) {
             IconButton(
                 onClick = {
-                    changeAppColor()
+                    //changeAppColor()
                 }
             ) {
                 Box(
@@ -162,7 +162,7 @@ fun BodyContent(
             ) {
                 itemsIndexed(feedState.movieList) { _, movie ->
                     CategoryRow(
-                        movie,
+                        movie.movieEntities,
                         input
                     )
                 }

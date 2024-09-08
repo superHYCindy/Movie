@@ -28,12 +28,10 @@ class FeedFragment : Fragment() {
             setContent {
                 MovieTheme {
                     feedViewModel.getMovieList()
-/*
                     FeedScreen(
                         feedStateHolder = feedViewModel.output.feedState.collectAsState(),
                         input = feedViewModel.input
                     )
-*/
                 }
             }
         }
