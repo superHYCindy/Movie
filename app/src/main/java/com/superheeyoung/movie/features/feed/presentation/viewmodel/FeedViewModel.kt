@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.superheeyoung.movie.features.common.repository.MovieRepository
+import com.superheeyoung.movie.features.feed.domain.GetMovieListUseCase
 import com.superheeyoung.movie.features.feed.presentation.input.FeedViewModelInput
 import com.superheeyoung.movie.features.feed.presentation.output.FeedState
 import com.superheeyoung.movie.features.feed.presentation.output.FeedUiEffect
@@ -18,11 +19,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FeedViewModel @Inject constructor(
-    private val movieRepository: MovieRepository
+    private val movieListUseCase: GetMovieListUseCase
 ) : ViewModel(), FeedViewModelOutput, FeedViewModelInput {
+    val output : FeedViewModelOutput = this
+    val input : FeedViewModelInput = this
+
     //화면에 보여주기 위한 flow
     private val _feedState : MutableStateFlow<FeedState> =
-        MutableStateFlow(FeedState)
+        MutableStateFlow(FeedState.Loading)
     override val feedState : StateFlow<FeedState>
         get() = _feedState
 
@@ -44,7 +48,7 @@ class FeedViewModel @Inject constructor(
 
     fun getMovieList() {
         viewModelScope.launch {
-            val movieList = movieRepository.getMovieList()
+            val movieList = movieListUseCase()
             Log.d("debug111",movieList.toString())
         }
     }

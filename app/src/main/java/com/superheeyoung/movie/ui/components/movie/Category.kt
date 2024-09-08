@@ -4,40 +4,33 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.superheeyoung.movie.features.common.network.MovieResponse
+import com.superheeyoung.movie.features.common.network.MovieResultResponse
+import com.superheeyoung.movie.features.feed.presentation.input.FeedViewModelInput
 import com.superheeyoung.movie.ui.theme.MovieTheme
 import com.superheeyoung.movie.ui.theme.Paddings
 
 @Composable
-fun CategoryRow() {
+fun CategoryRow(
+    movie : MovieResultResponse,
+    input : FeedViewModelInput
+
+) {
     Column {
-        CategoryTitle("Action")
+        CategoryTitle(movie.title)
 
         LazyRow(
             contentPadding = PaddingValues(
                 horizontal = Paddings.large
             )
         ) {
-           // itemsIndexed
-            item {
-                MovieItem()
-            }
-            item {
-                MovieItem()
-            }
-            item {
-                MovieItem()
-            }
-            item {
-                MovieItem()
-            }
-            item {
-                MovieItem()
-            }
+            //itemsIndexed()
         }
     }
 }
@@ -58,7 +51,7 @@ fun CategoryTitle(titleName: String) {
 @Composable
 fun CategoryRowPreview() {
     MovieTheme {
-        CategoryRow()
+       // CategoryRow()
     }
 
 }
