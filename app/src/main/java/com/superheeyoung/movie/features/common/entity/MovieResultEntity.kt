@@ -2,9 +2,10 @@ package com.superheeyoung.movie.features.common.entity
 
 import com.superheeyoung.movie.features.feed.data.GenreType
 
+
 data class MovieResultEntity(
-    val genreType: GenreType,
-    val movieEntities : List<MovieFeedEntity>
+    val movieEntities: List<MovieFeedEntity>,
+    val genreType: GenreType
 )
 
 data class MovieFeedEntity(

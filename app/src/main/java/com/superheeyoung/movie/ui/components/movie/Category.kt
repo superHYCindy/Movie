@@ -1,5 +1,6 @@
 package com.superheeyoung.movie.ui.components.movie
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -10,7 +11,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.superheeyoung.movie.features.common.entity.MovieFeedEntity
 import com.superheeyoung.movie.features.common.entity.MovieResultEntity
 import com.superheeyoung.movie.features.common.network.MovieResponse
 import com.superheeyoung.movie.features.common.network.MovieResultResponse
@@ -20,20 +20,21 @@ import com.superheeyoung.movie.ui.theme.Paddings
 
 @Composable
 fun CategoryRow(
-    movie: List<MovieFeedEntity>,
+    movie: MovieResultEntity,
     input: FeedViewModelInput
 ) {
     Column {
         //TODO Title Check
-        //CategoryTitle(movie.title)
+        CategoryTitle(movie.genreType.name)
         LazyRow(
             contentPadding = PaddingValues(
                 horizontal = Paddings.large
             )
         ) {
             itemsIndexed(
-                movie
+                movie.movieEntities
             ) { index, item ->
+                Log.d("debug435353",item.toString())
                 MovieItem(
                     movie = item,
                     input = input
@@ -46,7 +47,7 @@ fun CategoryRow(
 @Composable
 fun CategoryTitle(titleName: String) {
     Text(
-        text = "Action",
+        text = titleName,
         modifier = Modifier.padding(
             vertical = Paddings.large,
             horizontal = Paddings.extra

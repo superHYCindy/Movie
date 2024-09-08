@@ -51,6 +51,7 @@ class FeedViewModel @Inject constructor(
     fun getMovieList() {
         viewModelScope.launch {
             val movieList = getMovieListUseCase()
+            Log.d("debug3333",movieList.toString())
             _feedState.value = when (movieList) {
                 is BaseEntity.Fail -> {
                     FeedState.Failed(movieList.error.message ?: "Unknown Error")

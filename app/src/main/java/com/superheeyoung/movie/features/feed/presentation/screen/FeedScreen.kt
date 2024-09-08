@@ -1,6 +1,7 @@
 package com.superheeyoung.movie.features.feed.presentation.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -160,9 +161,10 @@ fun BodyContent(
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
+                Log.d("debug1111",feedState.movieList.toString())
                 itemsIndexed(feedState.movieList) { _, movie ->
                     CategoryRow(
-                        movie.movieEntities,
+                        movie,
                         input
                     )
                 }

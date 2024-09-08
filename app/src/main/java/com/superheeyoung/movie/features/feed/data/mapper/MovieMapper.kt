@@ -1,5 +1,6 @@
 package com.superheeyoung.movie.features.feed.data.mapper
 
+import android.util.Log
 import com.superheeyoung.movie.features.common.entity.BaseEntity
 import com.superheeyoung.movie.features.common.entity.MovieFeedEntity
 import com.superheeyoung.movie.features.common.entity.MovieResultEntity
@@ -13,7 +14,7 @@ class MovieMapper @Inject constructor() :
     BaseEntityMapper<List<MovieResultResponse>, List<MovieResultEntity>>() {
     override fun getSuccess(model: List<MovieResultResponse>?): BaseEntity.Success<List<MovieResultEntity>> {
         return model?.let {
-            BaseEntity.Success(toEntity(it))
+            BaseEntity.Success(toSortingMovieResultEntity(it))
         } ?: BaseEntity.Success(entity = listOf())
     }
 
@@ -22,24 +23,34 @@ class MovieMapper @Inject constructor() :
     }
 }
 
-fun toEntity(target: List<MovieResultResponse>): List<MovieResultEntity> = with(target) {
-    return this.map { response ->
-        val genreType = findGenreType(response.genreList.first())
-        MovieResultEntity(
-            genreType,
-            toMovieDetailEntity()
-        )
+fun toSortingMovieResultEntity(target : List<MovieResultResponse>) : List<MovieResultEntity> {
+    val genreSet = mutableSetOf<Int>().apply {
+        addAll(target.flatMap { it.genreList })
+    }
+    return mutableListOf<MovieResultEntity>().also { entity ->
+        genreSet.forEachIndexed { index, genreType ->
+            target
+                .filter { it.genreList.contains(genreType) }
+                .let {
+                    entity.add(
+                        MovieResultEntity(
+                            genreType = findGenreType(genreType),
+                            movieEntities = toMovieFeedEntity(it)
+                        )
+                    )
+                }
+        }
     }
 }
 
-fun List<MovieResultResponse>.toMovieDetailEntity(): List<MovieFeedEntity> = map {
-    MovieFeedEntity(
-        it.id,
-        "https://image.tmdb.org/t/p/w500${it.posterPath}",
-        it.title,
-        it.overview,
-        it.voteAverage
-    )
+fun toMovieFeedEntity(target : List<MovieResultResponse>) : List<MovieFeedEntity> = with(target) {
+    return map {
+        MovieFeedEntity(
+            it.id,
+            "https://image.tmdb.org/t/p/w500${it.posterPath}",
+            it.title,
+            it.overview,
+            it.voteAverage
+        )
+    }
 }
-
-
