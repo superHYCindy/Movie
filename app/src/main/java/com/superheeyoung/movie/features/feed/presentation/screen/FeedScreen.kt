@@ -161,7 +161,6 @@ fun BodyContent(
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-                Log.d("debug1111",feedState.movieList.toString())
                 itemsIndexed(feedState.movieList) { _, movie ->
                     CategoryRow(
                         movie,

@@ -24,7 +24,6 @@ fun CategoryRow(
     input: FeedViewModelInput
 ) {
     Column {
-        //TODO Title Check
         CategoryTitle(movie.genreType.name)
         LazyRow(
             contentPadding = PaddingValues(
@@ -34,7 +33,6 @@ fun CategoryRow(
             itemsIndexed(
                 movie.movieEntities
             ) { index, item ->
-                Log.d("debug435353",item.toString())
                 MovieItem(
                     movie = item,
                     input = input

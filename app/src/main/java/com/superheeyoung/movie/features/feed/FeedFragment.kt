@@ -9,10 +9,18 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.superheeyoung.movie.features.feed.presentation.navigation.safeNavigate
+import com.superheeyoung.movie.features.feed.presentation.output.FeedUiEffect
 import com.superheeyoung.movie.features.feed.presentation.screen.FeedScreen
 import com.superheeyoung.movie.features.feed.presentation.viewmodel.FeedViewModel
 import com.superheeyoung.movie.ui.theme.MovieTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FeedFragment : Fragment() {
@@ -32,6 +40,27 @@ class FeedFragment : Fragment() {
                         feedStateHolder = feedViewModel.output.feedState.collectAsState(),
                         input = feedViewModel.input
                     )
+                }
+            }
+        }
+    }
+
+    private fun observeUiEffects() {
+        val navController = findNavController()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                feedViewModel.output.feedUiEffect.collectLatest {
+                    when(it) {
+                        is FeedUiEffect.OpenMovieDetail -> {
+                            navController.safeNavigate(
+                                Feed
+                            )
+                        }
+
+                        is FeedUiEffect.OpenInfoDialog -> {
+
+                        }
+                    }
                 }
             }
         }

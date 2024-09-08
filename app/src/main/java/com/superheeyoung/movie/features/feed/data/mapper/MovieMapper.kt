@@ -1,12 +1,10 @@
 package com.superheeyoung.movie.features.feed.data.mapper
 
-import android.util.Log
 import com.superheeyoung.movie.features.common.entity.BaseEntity
 import com.superheeyoung.movie.features.common.entity.MovieFeedEntity
 import com.superheeyoung.movie.features.common.entity.MovieResultEntity
 import com.superheeyoung.movie.features.common.mapper.BaseEntityMapper
 import com.superheeyoung.movie.features.common.network.MovieResultResponse
-import com.superheeyoung.movie.features.feed.data.GenreType
 import com.superheeyoung.movie.features.feed.data.findGenreType
 import javax.inject.Inject
 
