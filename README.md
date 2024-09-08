@@ -1,7 +1,12 @@
 1. Compose
-2. Design System
-3. Navigation
-4. DI
-5. MVI
-6. Coroutine
-7. Flow - StateFlow, SharedFlow
+2. Coroutine + Flow for asynchronous
+3. Design System
+4. JetPack
+- Navigation
+- Compose
+- ViewModel
+- Navigation
+- Hilt
+6. Retrofit2 + OkHttp3
+7. MVI
+8. ksp 
