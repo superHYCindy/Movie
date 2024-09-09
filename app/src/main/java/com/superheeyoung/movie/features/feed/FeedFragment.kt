@@ -53,7 +53,7 @@ class FeedFragment : Fragment() {
                     when(it) {
                         is FeedUiEffect.OpenMovieDetail -> {
                             navController.safeNavigate(
-                                Feed
+                                FeedFragmentDirections.actionFeedToDetail(it.movieName)
                             )
                         }
 
