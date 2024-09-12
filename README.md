@@ -1,12 +1,14 @@
-1. Compose
-2. Coroutine + Flow for asynchronous
-3. Design System
-4. JetPack
-- Navigation
+# Tech Stack & Open Source Libraries
 - Compose
-- ViewModel
-- Navigation
-- Hilt
-6. Retrofit2 + OkHttp3
-7. MVI
-8. ksp 
+- Coroutine + Flow for asynchronous
+  - StateFlow, SharedFlow
+- Design System
+- JetPack
+  - Navigation
+  - Compose
+  - ViewModel
+  - Navigation
+  - Hilt
+- Retrofit2 + OkHttp3
+- MVI
+- ksp 
