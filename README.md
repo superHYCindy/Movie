@@ -10,5 +10,16 @@
   - Hilt
 - Retrofit2 + OkHttp3
 - Clean Architecture
+  - Presentation
+    - viewmodel + flow
+    - view(compose)
+  - Domain
+    - UseCase
+    - Entity
+    - mapper
+      - Generic Entity Mapper
+  - Data
+    - Network DataSource
+    - Repoository
 - MVI
 - ksp 
