@@ -14,6 +14,7 @@ material = "1.0.1"
 nav_version = "2.8.0"
 ksp = "2.0.0-1.0.24"
 hilt = "2.51.1"
+hilt_navigation="1.0.0"
 retrofit = "2.11.0"
 okhttp3 = "4.12.0"
 
@@ -33,6 +34,7 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 material = { module = "androidx.compose.material:material", version.ref = "material" }
+lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref="lifecycleRuntimeKtx"}
 
 # coil
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
@@ -46,6 +48,8 @@ navigation-module = { module = "androidx.navigation:navigation-dynamic-features-
 #hilt
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref="hilt"}
+hilt-compose-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref="hilt_navigation"}
+hilt-navgraph-fragment = { module = "androidx.hilt:hilt-navigation-fragment", version.ref="hilt_navigation"}
 
 # Network & Serialization
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }

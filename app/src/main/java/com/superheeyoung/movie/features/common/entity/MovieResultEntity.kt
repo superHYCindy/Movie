@@ -1,9 +1,10 @@
 package com.superheeyoung.movie.features.common.entity
 
+import android.os.Parcelable
 import com.superheeyoung.movie.features.feed.data.GenreType
 
 
-data class MovieResultEntity(
+data class MovieResultEntity (
     val movieEntities: List<MovieFeedEntity>,
     val genreType: GenreType
 )

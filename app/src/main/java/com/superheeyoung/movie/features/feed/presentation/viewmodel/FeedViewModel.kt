@@ -4,17 +4,22 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.superheeyoung.movie.features.common.entity.BaseEntity
+import com.superheeyoung.movie.features.common.entity.MovieFeedEntity
+import com.superheeyoung.movie.features.common.entity.MovieResultEntity
 import com.superheeyoung.movie.features.common.repository.MovieRepository
 import com.superheeyoung.movie.features.feed.domain.GetMovieListUseCase
 import com.superheeyoung.movie.features.feed.presentation.input.FeedViewModelInput
 import com.superheeyoung.movie.features.feed.presentation.output.FeedState
 import com.superheeyoung.movie.features.feed.presentation.output.FeedUiEffect
 import com.superheeyoung.movie.features.feed.presentation.output.FeedViewModelOutput
+import com.superheeyoung.movie.features.feed.presentation.shared.FeedSharedEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -36,8 +41,18 @@ class FeedViewModel @Inject constructor(
     override val feedUiEffect: SharedFlow<FeedUiEffect>
         get() = _feedUiEffect
 
-    override fun openDetail(movieName: String) {
-        TODO("Not yet implemented")
+    private val _event = MutableSharedFlow<FeedSharedEvent>()
+    val event: SharedFlow<FeedSharedEvent> = _event.asSharedFlow()
+
+    override fun openDetail(movieItem: MovieFeedEntity) {
+        viewModelScope.launch {
+            Log.d("debug2424",movieItem.toString())
+            _event.emit(FeedSharedEvent.SelectFeedItem(movieItem))
+
+            _feedUiEffect.emit(
+                FeedUiEffect.OpenMovieDetail
+            )
+        }
     }
 
     override fun openInfoDialog() {
@@ -50,16 +65,19 @@ class FeedViewModel @Inject constructor(
 
     fun getMovieList() {
         viewModelScope.launch {
-            val movieList = getMovieListUseCase()
-            _feedState.value = when (movieList) {
-                is BaseEntity.Fail -> {
-                    FeedState.Failed(movieList.error.message ?: "Unknown Error")
-                }
+            _feedState.value = FeedState.Loading
+            val movieListResult = getMovieListUseCase()
+            _feedState.update {
+                when (movieListResult) {
+                    is BaseEntity.Fail -> {
+                        FeedState.Failed(movieListResult.error.message ?: "Unknown Error")
+                    }
 
-                is BaseEntity.Success -> {
-                    FeedState.Main(
-                        movieList = movieList.entity
-                    )
+                    is BaseEntity.Success -> {
+                        FeedState.Main(
+                            movieList = movieListResult.entity
+                        )
+                    }
                 }
             }
         }

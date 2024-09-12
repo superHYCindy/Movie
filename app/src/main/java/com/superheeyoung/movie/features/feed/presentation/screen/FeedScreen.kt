@@ -40,6 +40,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.superheeyoung.movie.R
+import com.superheeyoung.movie.features.common.entity.MovieResultEntity
 import com.superheeyoung.movie.features.feed.presentation.input.FeedViewModelInput
 import com.superheeyoung.movie.features.feed.presentation.output.FeedState
 import com.superheeyoung.movie.ui.components.movie.CategoryRow
@@ -51,7 +52,7 @@ val COMMON_HORIZONTAL_PADDING = Paddings.medium
 @Composable
 fun FeedScreen(
     feedStateHolder: State<FeedState>,
-    input: FeedViewModelInput,
+    input: FeedViewModelInput
     //buttonColor: State<Color>,
    // changeAppColor: () -> Unit
 ) {

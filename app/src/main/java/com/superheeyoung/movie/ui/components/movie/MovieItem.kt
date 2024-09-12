@@ -30,7 +30,6 @@ import coil.request.ImageRequest
 import coil.size.Scale
 import com.superheeyoung.movie.R
 import com.superheeyoung.movie.features.common.entity.MovieFeedEntity
-import com.superheeyoung.movie.features.common.entity.MovieResultEntity
 import com.superheeyoung.movie.features.feed.data.GenreType
 import com.superheeyoung.movie.features.feed.presentation.input.FeedViewModelInput
 import com.superheeyoung.movie.ui.theme.Paddings
@@ -117,7 +116,7 @@ fun Poster(
             .fillMaxWidth()
             .height(200.dp),
         onClick = {
-            input.openDetail(movie.posterPath)
+            input.openDetail(movie)
         }
     ) {
         Image(

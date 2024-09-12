@@ -19,12 +19,8 @@
 
     <fragment
         android:id="@+id/detail_fragment"
-        android:name="com.superheeyoung.movie.features.detail.DetailFragment"
+        android:name="com.superheeyoung.movie.features.detail.presentation.DetailFragment"
         android:label="Detail" >
-
-        <argument
-            android:name ="movieName"
-            app:argType="string"/>
 
     </fragment>
 

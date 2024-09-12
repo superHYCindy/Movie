@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.navigation.safeargs.kotlin)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -68,6 +69,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.lifecycle.compose)
 
     //coil
     implementation(libs.coil)
@@ -75,6 +77,8 @@ dependencies {
     implementation(libs.bundles.navigation)
     //hilt
     implementation(libs.hilt)
+    implementation(libs.hilt.compose.navigation)
+    implementation(libs.hilt.navgraph.fragment)
     ksp(libs.hilt.compiler)
     //retrofit
     implementation(libs.bundles.retrofit)
