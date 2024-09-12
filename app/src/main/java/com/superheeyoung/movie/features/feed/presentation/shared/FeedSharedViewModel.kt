@@ -12,7 +12,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FeedSharedViewModel @Inject constructor() : ViewModel() {
+class FeedSharedViewModel @Inject constructor()
+    : ViewModel() {
     private val _event = MutableSharedFlow<FeedSharedEvent>(replay = 1)
     val event: SharedFlow<FeedSharedEvent> = _event.asSharedFlow()
 

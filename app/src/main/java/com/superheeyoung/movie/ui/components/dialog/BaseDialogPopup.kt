@@ -38,6 +38,7 @@ fun BaseDialogPopup(
         ) {
             dialogTitle?.let {
                 DialogTitleWrapper(dialogTitle)
+            }
                 Column(
                     modifier = Modifier
                         .background(Color.Transparent)
@@ -52,12 +53,9 @@ fun BaseDialogPopup(
                         DialogContentWrapper(dialogContent)
                     }
                     buttons?.let {
-                        buttons?.let {
-                            DialogButtonColumn(it)
-                        }
+                        DialogButtonColumn(it)
                     }
                 }
-            }
         }
     }
 }

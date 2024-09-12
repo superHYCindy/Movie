@@ -14,6 +14,11 @@
             app:destination="@+id/detail_fragment"
             app:launchSingleTop="true" />
 
+        <action
+            android:id="@+id/action_feed_to_info"
+            app:destination="@id/info_fragment"
+            app:launchSingleTop="true"/>
+
     </fragment>
 
 
@@ -24,4 +29,8 @@
 
     </fragment>
 
+    <dialog
+        android:id="@+id/info_fragment"
+        android:name="com.superheeyoung.movie.features.dialog.InfoDialogFragment"
+        android:label="Notice"/>
 </navigation>

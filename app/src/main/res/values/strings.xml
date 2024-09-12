@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Movie</string>
+    <!-- Info Popup -->
+    <string name="info_message">This is info Message.</string>
+    <string name="close">close</string>
 </resources>

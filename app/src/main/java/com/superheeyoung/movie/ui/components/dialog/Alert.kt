@@ -16,5 +16,6 @@ fun DialogPopup.Alert(
         DialogText.Default(
             bodyText
         )
-    ), buttons = listOf(DialogButton.Primary("Ok") {}))
+    ), buttons = buttons
+    )
 }

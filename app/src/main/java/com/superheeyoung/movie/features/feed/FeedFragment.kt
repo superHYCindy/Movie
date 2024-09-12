@@ -32,7 +32,6 @@ class FeedFragment : Fragment() {
 
     private val feedViewModel: FeedViewModel by viewModels()
 
-
     private val sharedViewModel: FeedSharedViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -66,7 +65,9 @@ class FeedFragment : Fragment() {
                     }
 
                     is FeedUiEffect.OpenInfoDialog -> {
-
+                        navController.safeNavigate(
+                            FeedFragmentDirections.actionFeedToInfo()
+                        )
                     }
                 }
             }

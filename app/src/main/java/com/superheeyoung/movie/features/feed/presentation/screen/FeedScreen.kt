@@ -53,11 +53,7 @@ val COMMON_HORIZONTAL_PADDING = Paddings.medium
 fun FeedScreen(
     feedStateHolder: State<FeedState>,
     input: FeedViewModelInput
-    //buttonColor: State<Color>,
-   // changeAppColor: () -> Unit
 ) {
-    //val btnColor by remember { buttonColor }
-
     Scaffold(
         topBar = {
             TopAppBar(

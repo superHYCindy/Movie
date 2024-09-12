@@ -1,7 +1,6 @@
-package com.superheeyoung.movie.features.detail.presentation
+package com.superheeyoung.movie.features.detail.presentation.screen
 
 import android.annotation.SuppressLint
-import android.graphics.Movie
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.Orientation
@@ -18,11 +17,9 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,33 +30,34 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.activityViewModels
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
 import com.superheeyoung.movie.R
 import com.superheeyoung.movie.features.common.entity.MovieFeedEntity
+import com.superheeyoung.movie.features.detail.presentation.input.DetailViewModelInput
 import com.superheeyoung.movie.features.feed.presentation.shared.FeedSharedEvent
 import com.superheeyoung.movie.features.feed.presentation.shared.FeedSharedViewModel
 import com.superheeyoung.movie.ui.components.movie.MovieMeta
 import com.superheeyoung.movie.ui.theme.Paddings
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun MovieDetailScreen(
+    input: DetailViewModelInput,
     sharedViewModel: FeedSharedViewModel
 ) {
     //TODO BackHandler
-    MovieDetail(sharedViewModel)
+    MovieDetail(
+        sharedViewModel,
+        input
+    )
 }
 
 
 @Composable
 fun MovieDetail(
-    sharedViewModel: FeedSharedViewModel
+    sharedViewModel: FeedSharedViewModel,
+    input: DetailViewModelInput
 ) {
     var movieItem by remember { mutableStateOf<MovieFeedEntity?>(null) }
     LaunchedEffect(true) {
@@ -73,14 +71,16 @@ fun MovieDetail(
         }
     }
 
-    movieItem?.let { 
-        MovieScreen(movieItem = it)
+    movieItem?.let {
+        MovieScreen(movieItem = it, input)
     }
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun MovieScreen(movieItem: MovieFeedEntity) {
+fun MovieScreen(
+    movieItem: MovieFeedEntity,
+    input: DetailViewModelInput) {
     val scrollState = rememberScrollState()
 
     Scaffold(
@@ -89,7 +89,7 @@ fun MovieScreen(movieItem: MovieFeedEntity) {
                 title = {},
                 modifier = Modifier.requiredHeight(70.dp),
                 navigationIcon = { //뒤로가기
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = { input.goBackToFeed() }) {
                         Icon(
                             imageVector = ImageVector.vectorResource(id = R.drawable.ic_back),
                             contentDescription = null
