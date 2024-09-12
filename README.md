@@ -7,7 +7,6 @@
   - Navigation
   - Compose
   - ViewModel
-  - Navigation
   - Hilt
 - Retrofit2 + OkHttp3
 - MVI
