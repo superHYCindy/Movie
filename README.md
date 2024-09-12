@@ -9,5 +9,6 @@
   - ViewModel
   - Hilt
 - Retrofit2 + OkHttp3
+- Clean Architecture
 - MVI
 - ksp 
