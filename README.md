@@ -1,5 +1,6 @@
 # Tech Stack & Open Source Libraries
 - Compose
+- MVI
 - Coroutine + Flow for asynchronous
   - StateFlow, SharedFlow
 - Design System
@@ -11,8 +12,8 @@
 - Retrofit2 + OkHttp3
 - Clean Architecture
   - Presentation
-    - viewmodel + flow
-    - view(compose)
+    - Viewmodel + Flow
+    - View(Compose)
   - Domain
     - UseCase
     - Entity
@@ -21,5 +22,4 @@
   - Data
     - Network DataSource
     - Repoository
-- MVI
-- ksp 
+- Ksp
